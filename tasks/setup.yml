@@ -1,0 +1,9 @@
+---
+
+- name: apply config
+  template:
+    src: prosody.cfg.lua
+    dest: /etc/prosody/prosody.cfg.lua
+    mode: 0640
+  become: yes
+  notify: restart_prosody

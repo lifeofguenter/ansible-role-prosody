@@ -12,6 +12,25 @@ none
 
 ```yaml
 
+prosody_domain:
+
+prosody_use_mysql: false
+
+prosody_mysql_host: 127.0.0.1
+
+prosody_mysql_port: 3306
+
+prosody_mysql_user: prosody
+
+prosody_mysql_password:
+
+prosody_mysql_db: prosody
+
+prosody_allow_registration: false
+
+prosody_cert_path:
+
+prosody_cert_key:
 
 ```
 

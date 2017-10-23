@@ -2,5 +2,11 @@
 
 - hosts: localhost
   remote_user: root
+
+  vars:
+    prosody_domain: foobar.localdomain
+    prosody_use_mysql: true
+    prosody_mysql_user: root
+
   roles:
     - ansible-role-prosody

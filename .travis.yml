@@ -14,6 +14,9 @@ addons:
     packages:
     - python-setuptools
 
+before_install:
+  - mysql -e 'CREATE DATABASE prosody;'
+
 install:
   - sudo -H easy_install pip
   # http://urllib3.readthedocs.io/en/latest/user-guide.html#ssl-py2
