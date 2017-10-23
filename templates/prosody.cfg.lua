@@ -180,6 +180,7 @@ VirtualHost "{{ prosody_domain }}"
     certificate = "{{ prosody_cert_path }}"; -- Note: Only readable by root by default
     key = "{{ prosody_cert_key }}";
   }
+  {% endif %}
 
 ------ Components ------
 -- You can specify components to add hosts that provide special services,
