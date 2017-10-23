@@ -5,6 +5,7 @@
     id: 74D9DBB5
     url: https://prosody.im/files/prosody-debian-packages.key
     state: present
+  become: yes
 
 - name: add repository
   apt_repository:
