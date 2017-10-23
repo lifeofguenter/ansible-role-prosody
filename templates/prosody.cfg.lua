@@ -15,7 +15,7 @@ use_libevent = true
 -- Prosody will always look in its source directory for modules, but
 -- this option allows you to specify additional locations where Prosody
 -- will look for modules first. For community modules, see https://modules.prosody.im/
---plugin_paths = {}
+plugin_paths = { "/usr/local/lib/prosody/modules/" }
 
 -- This is the list of modules Prosody will load on startup.
 -- It looks for mod_modulename.lua in the plugins folder, so make sure that exists too.
@@ -175,12 +175,14 @@ certificates = "certs"
 -- Settings under each VirtualHost entry apply *only* to that host.
 
 VirtualHost "{{ prosody_domain }}"
-  {% if prosody_cert_path is defined and prosody_cert_key is defined %}
+{% if prosody_cert_path is defined and prosody_cert_key is defined %}
   ssl = {
     certificate = "{{ prosody_cert_path }}"; -- Note: Only readable by root by default
     key = "{{ prosody_cert_key }}";
+    protocol = "tlsv1_1+";
+    dhparam = "/etc/prosody/certs/dhparam.pem";
   }
-  {% endif %}
+{% endif %}
 
 ------ Components ------
 -- You can specify components to add hosts that provide special services,

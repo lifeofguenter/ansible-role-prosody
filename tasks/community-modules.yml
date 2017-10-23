@@ -1,0 +1,15 @@
+---
+
+- name: add local lib folder
+  file:
+    path: /usr/local/lib/prosody/modules/
+    state: directory
+    recurse: yes
+    mode: 0755
+  become: yes
+
+- name: clone modules
+  hg:
+    repo: https://hg.prosody.im/prosody-modules/
+    dest: /usr/local/lib/prosody/modules/
+  become: yes
