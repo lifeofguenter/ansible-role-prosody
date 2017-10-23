@@ -210,7 +210,7 @@ VirtualHost "{{ prosody_domain }}"
 ---Set up a MUC (multi-user chat) room server on conference.example.com:
 Component "conference.{{ prosody_domain }}" "muc"
   name = "{{ prosody_domain }} muc"
-  restrict_room_creation = local
+  restrict_room_creation = "local"
   max_history_messages = 32
 
 ---Set up an external component (default component port is 5347)
