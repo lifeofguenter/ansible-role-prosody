@@ -63,6 +63,11 @@ modules_enabled = {
 		--"motd"; -- Send a message to users when they log in
 		--"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
 		--"proxy65"; -- Enables a file transfer proxy service which clients behind NAT can use
+
+{% if prosody_recaptcha_private_key is defined and prosody_recaptcha_public_key is defined %}
+    "http";
+    "register_web";
+{% endif %}
 }
 
 -- These modules are auto-loaded, but should you want
@@ -73,6 +78,19 @@ modules_disabled = {
 	-- "s2s"; -- Handle server-to-server connections
 	-- "posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
 }
+
+{% if prosody_recaptcha_private_key is defined and prosody_recaptcha_public_key is defined %}
+captcha_options = {
+  recaptcha_private_key = "{{ prosody_recaptcha_private_key }}";
+  recaptcha_public_key = "{{ prosody_recaptcha_public_key }}";
+}
+
+http_ports = { 5280 }
+http_interfaces = { "127.0.0.1" }
+ 
+https_ports = { 5281 }
+https_interfaces = { "127.0.0.1" }
+{% endif %}
 
 -- Disable account creation by default, for security
 -- For more information see https://prosody.im/doc/creating_accounts
@@ -130,9 +148,9 @@ sql = {
   host = "{{ prosody_mysql_host }}"; -- The address of the database server (delete this line for Postgres)
   port = {{ prosody_mysql_port }}; -- For databases connecting over TCP
   username = "{{ prosody_mysql_user }}"; -- The username to authenticate to the database
-  {% if prosody_mysql_password is defined %}
+{% if prosody_mysql_password is defined %}
   password = "{{ prosody_mysql_password }}"; -- The password to authenticate to the database
-  {% endif %}
+{% endif %}
 }
 {% endif %}
 
@@ -191,6 +209,9 @@ VirtualHost "{{ prosody_domain }}"
 
 ---Set up a MUC (multi-user chat) room server on conference.example.com:
 Component "conference.{{ prosody_domain }}" "muc"
+  name = "{{ prosody_domain }} muc"
+  restrict_room_creation = local
+  max_history_messages = 32
 
 ---Set up an external component (default component port is 5347)
 --
