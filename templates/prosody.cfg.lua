@@ -122,7 +122,7 @@ pidfile = "/run/prosody/prosody.pid"
 
 authentication = "internal_hashed"
 
-{% if prosody_use_msql %}
+{% if prosody_use_mysql %}
 storage = "sql"
 sql = {
   driver = "MySQL";
