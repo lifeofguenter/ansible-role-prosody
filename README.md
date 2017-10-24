@@ -32,6 +32,8 @@ prosody_cert_path:
 
 prosody_cert_key:
 
+prosody_cert_ciphers:
+
 prosody_recaptcha_private_key:
 
 prosody_recaptcha_public_key:

@@ -87,7 +87,7 @@ captcha_options = {
 
 http_ports = { 5280 }
 http_interfaces = { "127.0.0.1" }
- 
+
 https_ports = { 5281 }
 https_interfaces = { "127.0.0.1" }
 {% endif %}
@@ -195,10 +195,13 @@ certificates = "certs"
 VirtualHost "{{ prosody_domain }}"
 {% if prosody_cert_path is defined and prosody_cert_key is defined %}
   ssl = {
-    certificate = "{{ prosody_cert_path }}"; -- Note: Only readable by root by default
+    certificate = "{{ prosody_cert_path }}";
     key = "{{ prosody_cert_key }}";
     protocol = "tlsv1_1+";
     dhparam = "/etc/prosody/certs/dhparam.pem";
+{% if prosody_cert_ciphers is defined %}
+    ciphers = "{{ prosody_cert_ciphers }}";
+{% endif %}
   }
 {% endif %}
 
