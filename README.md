@@ -14,6 +14,8 @@ none
 
 prosody_domain:
 
+prosody_log_level: warn
+
 prosody_use_mysql: false
 
 prosody_mysql_host: 127.0.0.1
@@ -41,6 +43,8 @@ prosody_ssl_dhparam:
 prosody_recaptcha_private_key:
 
 prosody_recaptcha_public_key:
+
+prosody_s2s_secure_auth: true
 
 ```
 

@@ -1,5 +1,7 @@
 ---
 
+prosody_log_level: warn
+
 prosody_use_mysql: false
 
 prosody_mysql_host: 127.0.0.1
@@ -13,3 +15,5 @@ prosody_mysql_db: prosody
 prosody_allow_registration: false
 
 prosody_ssl_protocol: tlsv1_1+
+
+prosody_s2s_secure_auth: true

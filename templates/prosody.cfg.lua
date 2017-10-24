@@ -85,11 +85,10 @@ captcha_options = {
   recaptcha_public_key = "{{ prosody_recaptcha_public_key }}";
 }
 
+-- use http behind proper webserver like nginx
 http_ports = { 5280 }
 http_interfaces = { "127.0.0.1" }
-
-https_ports = { 5281 }
-https_interfaces = { "127.0.0.1" }
+https_ports = { }
 {% endif %}
 
 -- Disable account creation by default, for security
@@ -114,7 +113,7 @@ s2s_require_encryption = true
 -- NOTE: Your version of LuaSec must support certificate verification!
 -- For more information see https://prosody.im/doc/s2s#security
 
-s2s_secure_auth = false
+s2s_secure_auth = {{ prosody_s2s_secure_auth }}
 
 -- Some servers have invalid or self-signed certificates. You can list
 -- remote domains here that will not be required to authenticate using
@@ -168,10 +167,10 @@ archive_expires_after = "1m" -- Remove archived messages after 1 week
 -- Logging configuration
 -- For advanced logging see https://prosody.im/doc/logging
 log = {
-	info = "/var/log/prosody/prosody.log"; -- Change 'info' to 'debug' for verbose logging
-	error = "/var/log/prosody/prosody.err";
-	-- "*syslog"; -- Uncomment this for logging to syslog
-	-- "*console"; -- Log to the console, useful for debugging with daemonize=false
+{% if prosody_log_level != "error" %}
+  {{ prosody_log_level }} = "/var/log/prosody/prosody.log";
+{% endif %}
+  error = "/var/log/prosody/prosody.err";
 }
 
 -- Uncomment to enable statistics

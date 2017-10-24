@@ -7,6 +7,7 @@
     prosody_domain: foobar.localdomain
     prosody_use_mysql: true
     prosody_mysql_user: root
+    prosody_s2s_secure_auth: false
 
   roles:
     - ansible-role-prosody
