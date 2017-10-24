@@ -193,14 +193,16 @@ certificates = "certs"
 -- Settings under each VirtualHost entry apply *only* to that host.
 
 VirtualHost "{{ prosody_domain }}"
-{% if prosody_cert_path is defined and prosody_cert_key is defined %}
+{% if prosody_ssl_cert is defined and prosody_ssl_key is defined %}
   ssl = {
-    certificate = "{{ prosody_cert_path }}";
-    key = "{{ prosody_cert_key }}";
-    protocol = "tlsv1_1+";
-    dhparam = "/etc/prosody/certs/dhparam.pem";
-{% if prosody_cert_ciphers is defined %}
-    ciphers = "{{ prosody_cert_ciphers }}";
+    certificate = "{{ prosody_ssl_cert }}";
+    key = "{{ prosody_ssl_key }}";
+    protocol = "{{ prosody_ssl_protocol }}";
+{% if prosody_ssl_dhparam is defined %}
+    dhparam = "{{ prosody_ssl_dhparam }}";
+{% endif %}
+{% if prosody_ssl_ciphers is defined %}
+    ciphers = "{{ prosody_ssl_ciphers }}";
 {% endif %}
   }
 {% endif %}

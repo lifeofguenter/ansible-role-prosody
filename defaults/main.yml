@@ -11,3 +11,5 @@ prosody_mysql_user: prosody
 prosody_mysql_db: prosody
 
 prosody_allow_registration: false
+
+prosody_ssl_protocol: tlsv1_1+

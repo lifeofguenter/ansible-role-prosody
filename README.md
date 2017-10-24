@@ -28,11 +28,15 @@ prosody_mysql_db: prosody
 
 prosody_allow_registration: false
 
-prosody_cert_path:
+prosody_ssl_cert:
 
-prosody_cert_key:
+prosody_ssl_key:
 
-prosody_cert_ciphers:
+prosody_ssl_ciphers:
+
+prosody_ssl_protocol: tlsv1_1+
+
+prosody_ssl_dhparam:
 
 prosody_recaptcha_private_key:
 
